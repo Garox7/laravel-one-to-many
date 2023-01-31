@@ -4,7 +4,7 @@
     @if (session('success_deleted'))
         <div class="container">
             <div class="alert alert-warning">
-                Category "{{ session('success_deleted')->title }}" successfully deleted!
+                La categoria "{{ session('success_deleted')->name }}" è stata eliminata.
             </div>
         </div>
     @endif
@@ -36,11 +36,13 @@
                         </a>
                     </td>
                     <td>
-                        <form action="{{ route('admin.categories.destroy', ['category' => $category]) }}" method="post">
-                            @csrf()
-                            @method('DELETE')
-                            <button class="btn btn-danger">Elimina</button>
-                        </form>
+                        @if ($category->slug != 'nessuna')
+                            <form action="{{ route('admin.categories.destroy', ['category' => $category]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger">Elimina</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

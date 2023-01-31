@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -81,7 +82,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', ['category' => $category]);
     }
 
     /**
@@ -93,7 +94,27 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'slug' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('categories')->ignore($category),
+            ],
+            'name' => 'required|string|max:100',
+            'description' => 'nullable|string',
+        ]);
+
+        $data = $request->all();
+
+        $category->slug = $data['slug'];
+        $category->name = $data['name'];
+        $category->description = $data['description'];
+        $category->update();
+
+        return redirect()
+            ->route('admin.categories.show', ['category' => $category])
+            ->with('success_updated', $category);
     }
 
     /**
@@ -104,6 +125,15 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $defaultCategory = Category::where('slug', 'nessuna')->first();
+
+        foreach ($category->posts as $post) {
+            $post->category_id = $defaultCategory->id;
+            $post->update();
+        }
+        $category->delete();
+
+        // ridirezionare
+        return redirect()->route('admin.categories.index')->with('success_deleted', $category);
     }
 }
