@@ -11,16 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    // private $checkValidation = [
-    //     'slug' => 'required|string|max:100',
-    //     'title' => 'required|string|max:100',
-    //     'category_id' => 'required|integer|exists:categories,id',
-    //     'file_path' => 'image|max:2048',
-    //     'image' => 'string|max:100',
-    //     'content' => 'string',
-    //     'excerpt' => 'string'
-    // ];
-
     /**
      * Display a listing of the resource.
      *
@@ -57,8 +47,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate($this->checkValidation);
-
         $request->validate([
             'slug' => 'required|string|max:100|unique:posts',
             'title' => 'required|string|max:100',
@@ -70,7 +58,6 @@ class PostController extends Controller
         ]);
 
         $data = $request->all();
-        dd($data);
 
         $fileImg =  isset($data['file_path']) ? Storage::put('uploads', $data['file_path']) : null;
 
@@ -84,7 +71,9 @@ class PostController extends Controller
         $post->excerpt = $data['excerpt'];
         $post->save();
 
-        return redirect()->route('admin.posts.show', ['post' => $post])->with('success_created', $post);
+        return redirect()
+            ->route('admin.posts.show', ['post' => $post])
+            ->with('success_created', $post);
     }
 
     /**
@@ -118,8 +107,6 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // $request->validate($this->checkValidation);
-
         $request->validate([
             'slug' => [
                 'required',
@@ -147,7 +134,9 @@ class PostController extends Controller
         $post->excerpt = $data['excerpt'];
         $post->update();
 
-        return redirect()->route('admin.posts.show', ['post' => $post])->with('success_updated', $post);
+        return redirect()
+            ->route('admin.posts.show', ['post' => $post])
+            ->with('success_updated', $post);
     }
 
     /**
@@ -159,6 +148,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('admin.posts.index')->with('success_deleted', $post);
+        return redirect()
+            ->route('admin.posts.index')
+            ->with('success_deleted', $post);
     }
 }
