@@ -66,6 +66,12 @@
                                 <span class="text nav-text">Nuovo Post</span>
                             </a>
                         </li>
+                        <li class="my-nav-link">
+                            <a href="{{ route('admin.categories.index') }}">
+                                <i class='bx bx-category icon'></i>
+                                <span class="text nav-text">Categorie</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
