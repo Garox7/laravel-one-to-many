@@ -41,15 +41,16 @@ body.dark {
 
 /********* Main content setting *********/
 
-main {
+.admin-main {
     position: relative;
     height: 100%;
+    padding: 20px 35px;
     left: 250px;
     width: calc(100% - 250px);
     transition: var(--tran-02);
 }
 
-.admin-sidebar.close ~ main {
+.admin-sidebar.close ~ .admin-main {
     left: 88px;
     width: calc(100% - 88px);
 }

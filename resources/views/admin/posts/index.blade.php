@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.base-admin')
 
 @section('content')
     @if (session('success_deleted'))

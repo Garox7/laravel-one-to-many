@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.base-admin')
 
 @section('content')
     <form action="{{ route('admin.posts.update', ['post' => $post]) }}" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
