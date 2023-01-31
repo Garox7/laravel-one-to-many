@@ -29,7 +29,7 @@ class CategorySeeder extends Seeder
 
         foreach ($categories as $category) {
             Category::create([
-                'slug' => Category::getSLug($category),
+                'slug' => Category::getSlug($category),
                 'name' => $category,
                 'description' => $faker->paragraphs(rand(2, 4), true)
             ]);

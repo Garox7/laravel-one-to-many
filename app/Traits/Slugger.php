@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 
 trait Slugger
 {
-    public static function getSLug($text)
+    public static function getSlug($text)
     {
         $slugBase  = Str::slug($text);
         $slug = $slugBase;
