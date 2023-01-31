@@ -15,7 +15,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Titolo</th>
-                    <th scope="col">Anteprima</th>
+                    <th scope="col">Categria</th>
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
@@ -24,7 +24,7 @@
                 <tr>
                     <th scope="row">{{ $post->id }}</th>
                     <td>{{ $post->title }}</td>
-                    <td>{{ $post->excerpt }}</td>
+                    <td>{{ $post->category->name }}</td>
                     <td>
                         <a href="{{ route('admin.posts.show', ['post' => $post]) }}">
                             <button class="btn btn-primary">Leggi</button>
