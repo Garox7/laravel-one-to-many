@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.base-admin')
 
 @section('content')
     <form action="{{ route('admin.posts.store') }}" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
@@ -28,6 +28,26 @@
                     <ul>
                         @foreach ($errors->get('slug') as $errorMess)
                             <li>{{ $errorMess }}</li>
+                        @endforeach
+                    </ul>
+                @enderror
+            </div>
+        </div>
+
+        {{-- CATEGORY --}}
+        <div class="mb-3">
+            <label for="category" class="form-label">Categoria</label>
+            <select class="form-select @error('category_id') is-invalid @enderror" id="category" name="category_id">
+                <option value="">Seleziona la categoria</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+            <div class="invalid-feedback">
+                @error('category_id')
+                    <ul>
+                        @foreach ($errors->get('category_id') as $error)
+                            <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 @enderror
