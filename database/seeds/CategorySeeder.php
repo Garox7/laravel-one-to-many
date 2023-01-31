@@ -14,6 +14,7 @@ class CategorySeeder extends Seeder
     public function run(Faker $faker)
     {
         $categories = [
+            'Nessuna',
             'Attualità',
             'Mondo dello spettacolo',
             'Politica',
