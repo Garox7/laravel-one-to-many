@@ -17,6 +17,7 @@
 
     <div class="container">
         <h1>{{ $post->title }}</h1>
+        <h5>Categoria: {{ $post->category->name }}</h5>
         <img src="{{ asset('storage/' . $post->file_path) }}" alt="{{ $post->title }}" class="img-fluid rounded">
         <p>
             {{ $post->content }}
