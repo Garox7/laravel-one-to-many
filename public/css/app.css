@@ -12788,7 +12788,8 @@ body.dark {
   transition: var(--tran-02);
 }
 
-.admin-sidebar li a {
+.admin-sidebar li a,
+.admin-sidebar li .logout-button {
   height: 100%;
   width: 100%;
   text-decoration: none;
@@ -12799,12 +12800,15 @@ body.dark {
   cursor: pointer;
 }
 
-.admin-sidebar li a:hover {
+.admin-sidebar li a:hover,
+.admin-sidebar li .logout-button:hover {
   background: var(--primary-color);
 }
 
 .admin-sidebar li a:hover .icon,
-.admin-sidebar li a:hover .text {
+.admin-sidebar li a:hover .text,
+.admin-sidebar li .logout-button:hover .icon,
+.admin-sidebar li .logout-button:hover .text {
   color: var(--sidebar-color);
 }
 
