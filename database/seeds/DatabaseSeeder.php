@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         Storage::deleteDirectory('uploads');
         Storage::makeDirectory('uploads');
-
         $this->call(UserSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(PostSeeder::class);
