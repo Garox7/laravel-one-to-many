@@ -76,16 +76,11 @@
                 </div>
 
                 <div class="bottom-content">
-                    <li>
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                        </a>
-                        <form  id="logout-form" action="{{ route('logout') }}" method="POST" class="logout-button">
-                            @csrf
+                    <li class="">
+                        <a href="#">
                             <i class='bx bx-log-out icon'></i>
                             <span class="text nav-text">Logout</span>
-                        </form>
+                        </a>
                     </li>
 
                     <li class="mode">
